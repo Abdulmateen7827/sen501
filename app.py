@@ -41,11 +41,11 @@ def handle_user_input():
     if user_input:
         response = generate_response(user_input)
         st.session_state.chat_history.append(f"🧑: {user_input}")
-        st.session_state.chat_history.append(f"🤖: {response}")
+        st.session_state.chat_history.append(f"🗣️: {response}")
         st.session_state.input = ""  # Clear input *before* next render
 
 def main():
-    st.set_page_config(page_title="Group 6 Chatbot", page_icon="💬")
+    st.set_page_config(page_title="Group 5 Chatbot", page_icon="💬")
     st.title("Group 5 Customer Service Chatbot")
 
     with st.expander("ℹ️ Project Contributors"):
@@ -62,7 +62,7 @@ def main():
     # Initialize chat history
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
-        st.session_state.chat_history.append("🤖: Hello! I am your virtual assistant. How may I help you?")
+        st.session_state.chat_history.append("🗣️: Hello! I am your virtual assistant. How may I help you?")
 
     # Display chat history
     for msg in st.session_state.chat_history:
@@ -70,7 +70,8 @@ def main():
 
     # Input box at the bottom, using a callback to handle input
     st.text_input(
-        "Type your message here:",
+        label="",
+        placeholder="Ask me anything...",
         key="input",
         on_change=handle_user_input
     )
