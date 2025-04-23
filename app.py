@@ -46,7 +46,8 @@ def handle_user_input():
 
 def main():
     st.set_page_config(page_title="Group 5 Chatbot", page_icon="💬")
-    st.title("Group 5 Customer Service Chatbot")
+    st.title("Group 5")
+    st.markdown("Customer Service Chatbot")
 
     with st.expander("ℹ️ Project Contributors"):
         st.markdown("""
