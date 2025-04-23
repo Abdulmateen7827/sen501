@@ -35,28 +35,45 @@ def generate_response(prompt):
     else:
         return f"Error: {response.status_code} - {response.text}"
 
-# Streamlit app
-def main():
-    st.title("Simple Customer Service Chatbot")
 
-    # Initialize session state for chat history
+def handle_user_input():
+    user_input = st.session_state.input
+    if user_input:
+        response = generate_response(user_input)
+        st.session_state.chat_history.append(f"🧑: {user_input}")
+        st.session_state.chat_history.append(f"🤖: {response}")
+        st.session_state.input = ""  # Clear input *before* next render
+
+def main():
+    st.set_page_config(page_title="Group 6 Chatbot", page_icon="💬")
+    st.title("Group 5 Customer Service Chatbot")
+
+    with st.expander("ℹ️ Project Contributors"):
+        st.markdown("""
+        **Group 6 Contributors:**
+        - ADEBOWALE ANU VICTOR – `SEN/19/0689`
+        - ASHIFA ABDULMATEEN ADENIYI – `SEN/19/0702`
+        - BALOGUN EMMANUEL AYOMIDE – `SEN/19/0708 `
+        - OGUNKENU KAYODE AYOMIDE – `SEN/19/0724`
+        - MAFO MOYOSOREOLUWA AYOMIDE – `SEN/19/0721`
+        - SARAFADEEN IBRAHIM OYINKOLADE – `SEN/19/0742`
+        """)
+
+    # Initialize chat history
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
+        st.session_state.chat_history.append("🤖: Hello! I am your virtual assistant. How may I help you?")
 
-    # User input
-    user_input = st.text_input("You: ", "")
+    # Display chat history
+    for msg in st.session_state.chat_history:
+        st.markdown(msg)
 
-    if user_input:
-        # Generate a response
-        bot_response = generate_response(user_input)
-        
-        # Append the conversation to the chat history
-        st.session_state.chat_history.append(f"You: {user_input}")
-        st.session_state.chat_history.append(f"Bot: {bot_response}")
-
-    # Display the chat history
-    for message in st.session_state.chat_history:
-        st.text(message)
+    # Input box at the bottom, using a callback to handle input
+    st.text_input(
+        "Type your message here:",
+        key="input",
+        on_change=handle_user_input
+    )
 
 if __name__ == "__main__":
     main()
