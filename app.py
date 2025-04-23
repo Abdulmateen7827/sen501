@@ -40,7 +40,7 @@ def handle_user_input():
     user_input = st.session_state.input
     if user_input:
         response = generate_response(user_input)
-        st.session_state.chat_history.append(f"🧑: {user_input}")
+        st.session_state.chat_history.append(f"👤: {user_input}")
         st.session_state.chat_history.append(f"🗣️: {response}")
         st.session_state.input = ""  # Clear input *before* next render
 
@@ -49,7 +49,7 @@ def main():
     st.title("Group 5")
     st.markdown("Customer Service Chatbot")
 
-    with st.expander("ℹ️ Project Contributors"):
+    with st.expander("👥 Project Contributors"):
         st.markdown("""
         **Group 6 Contributors:**
         - ADEBOWALE ANU VICTOR – `SEN/19/0689`
