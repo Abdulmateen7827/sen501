@@ -58,6 +58,7 @@ def main():
         - OGUNKENU KAYODE AYOMIDE – `SEN/19/0724`
         - MAFO MOYOSOREOLUWA AYOMIDE – `SEN/19/0721`
         - SARAFADEEN IBRAHIM OYINKOLADE – `SEN/19/0742`
+        - AKINTAN DAVID OLUWAYEMI – `SEN/19/0698`
         """)
 
     # Initialize chat history
